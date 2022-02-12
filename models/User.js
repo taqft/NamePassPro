@@ -1,4 +1,5 @@
-// user model
+const { Model, DataTypes, UUIDV4 } = require('sequelize');
+const sequelize = require('../config');
 class User extends Model {}
 User.init({
 	id: {
@@ -24,13 +25,6 @@ User.init({
 	master: {
 		type: DataTypes.STRING,
 		allowNull: false,
-		validate: {
-			len: [12, 64]
-		}
-	},
-	data: {
-		type: DataTypes.ARRAY,
-		allowNull: false,
 	}
 }, {
 	sequelize,
@@ -38,3 +32,4 @@ User.init({
 	freezeTableName: true,
 	modelName: 'user',
 }, );
+module.exports = User;

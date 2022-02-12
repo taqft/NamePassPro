@@ -1,25 +1,44 @@
-// user controller logic
 const {
 	User
 } = require('../models');
 module.exports = {
 	createUser: async (req, res) => {
-		const { username, email, password } = req.body;
-		if (!username || !email || !password ) {
-			return res.status(400).json({ error: 'You must provide a username, email, and password'});
+		const { username, email, password, master } = req.body;
+		if (!username || !email || !password || !master) {
+			return res.status(400).json({
+				error: 'You must provide a username, email, password, and master password'
+			});
 		}
 		try {
 			const user = await User.create({
 				username,
 				email,
 				password,
+				master,
 			});
 			res.json(user);
 		} catch (e) {
 			res.json(e);
 		}
 	},
-//	getting users
+	//	getting users
+	getAllUsers: async (req, res) => {
+		try {
+			const usersData = await User.findAll({});
+
+			const users = usersData.map(user => user.get({
+				plain: true
+			}));
+
+			console.log(users);
+			res.render('allUsers', {
+				users,
+				favoriteFood: 'Ice cream sandwich',
+			});
+		} catch (e) {
+			res.json(e);
+		}
+	},
 	renderHomePage: async (req, res) => {
 		res.render('homepage');
 	},
@@ -33,7 +52,9 @@ module.exports = {
 		});
 		try {
 			const userData = await User.findByPk(req.params.userId);
-			const user = userData.get({ plain: true });
+			const user = userData.get({
+				plain: true
+			});
 			res.render('singleUser', {
 				user,
 				visitCount: req.session.visitCount,
@@ -46,8 +67,12 @@ module.exports = {
 		console.log(req.body);
 		try {
 			//	first find the user with the given email address
-			const userData = await User.findOne({ email: req.body.email });
-			const userFound = userData.get({ plain: true });
+			const userData = await User.findOne({
+				email: req.body.email
+			});
+			const userFound = userData.get({
+				plain: true
+			});
 
 			console.log(userFound);
 			//	check if the password from the form is the same password as the user found
@@ -59,7 +84,9 @@ module.exports = {
 				console.log('im hit', 75);
 				req.session.save(() => {
 					req.session.user = userFound;
-					res.json({ success: true });
+					res.json({
+						success: true
+					});
 				});
 			}
 		} catch (e) {
@@ -69,15 +96,21 @@ module.exports = {
 	},
 
 	signupHandler: async (req, res) => {
-		const { email, username, password } = req.body;
+		const {
+			email,
+			username,
+			password
+		} = req.body;
 
 		try {
 			const createdUser = await User.create({
 				email,
-				username, 
+				username,
 				password,
 			});
-			const user = createdUser.get({ plain: true });
+			const user = createdUser.get({
+				plain: true
+			});
 
 			req.session.save(() => {
 				req.session.loggedIn = true;
@@ -103,7 +136,9 @@ module.exports = {
 	},
 	logout: (req, res) => {
 		req.session.destroy(() => {
-			res.send({ status: true });
+			res.send({
+				status: true
+			});
 		})
 	},
 }
