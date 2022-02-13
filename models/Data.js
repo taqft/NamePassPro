@@ -1,20 +1,24 @@
 // hashed passwords data model
-const {
-  Model,
-  DataTypes,
-  UUIDV4
-} = require('sequelize');
+const { Model, DataTypes, UUIDV4 } = require('sequelize');
 const sequelize = require('../config');
-class Data extends Model {}
+const User = require('./User');
+class Data extends Model {
+  static associate(models) {
+    Data.belongsTo(models.User, {
+      foreignKey: "userId",
+      sourceKey: "id",
+    });
+  }
+}
 Data.init({
   id: {
-    type: DataTypes.UUID,
-    defaultValue: UUIDV4,
+    type: DataTypes.INTEGER,
     primaryKey: true,
+    autoIncrement: true
   },
-  user_id: {
+  userId: {
     type: DataTypes.UUID,
-    defaultValue: UUIDV4,
+    allowNull: false,
   },
   username: {
     type: DataTypes.STRING,
@@ -23,9 +27,6 @@ Data.init({
   password: {
     type: DataTypes.STRING,
     allowNull: false,
-    validate: {
-      len: [6]
-    }
   },
 }, {
   sequelize,
@@ -33,3 +34,5 @@ Data.init({
   freezeTableName: true,
   modelName: 'data',
 }, );
+
+module.exports = Data;

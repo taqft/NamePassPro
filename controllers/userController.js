@@ -31,10 +31,7 @@ module.exports = {
 			}));
 
 			console.log(users);
-			res.render('allUsers', {
-				users,
-				favoriteFood: 'Ice cream sandwich',
-			});
+			res.json(users);
 		} catch (e) {
 			res.json(e);
 		}

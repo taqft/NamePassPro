@@ -1,6 +1,17 @@
 const { Model, DataTypes, UUIDV4 } = require('sequelize');
 const sequelize = require('../config');
-class User extends Model {}
+class User extends Model {
+	static associate(models) {
+		User.hasMany(models.Data, {
+			foreignKey: {
+				name: "userId",
+				allowNull: false
+			},
+			as: "data",
+			targetKey: "id",
+		});
+	}
+}
 User.init({
 	id: {
 		type: DataTypes.UUID,
@@ -32,4 +43,5 @@ User.init({
 	freezeTableName: true,
 	modelName: 'user',
 }, );
+
 module.exports = User;

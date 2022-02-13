@@ -1,18 +1,18 @@
-// userRoutes
+// dataRoutes
 const router = require('express').Router();
 const {
-  createUser,
-  getAllUsers,
-  getUserById
-} = require('../../../controllers/userController');
+  createData,
+  getDataByUserId,
+  //deleteDataByUserId,
+} = require('../../../controllers/dataController');
 
 router.route('/')
-  .get(getAllUsers)
-  .post(createUser);
+  .post(createData);
 
 router.route('/:userId')
-  .get(getUserById);
+  .get(getDataByUserId);
 // /api/users/:userId
+
 // router.route('/:userId')
 // 	.delete(deleteUserById)
 // 	.get(getUserById)
