@@ -19,7 +19,6 @@ const sessionSettings = {
 };
 
 //Tells node we're using handlebars for our template engine and configures it as the view engine
-
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 

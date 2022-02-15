@@ -37,6 +37,7 @@ module.exports = {
 		}
 	},
 	renderHomePage: async (req, res) => {
+		console.log('rendering homepage...')
 		res.render('homepage');
 	},
 	getUserById: async (req, res) => {
@@ -75,10 +76,10 @@ module.exports = {
 			//	check if the password from the form is the same password as the user found
 			//	with the given email
 			//	if that is true, save the user found in req.session.user
-			console.log(userFound.password, 72);
-			console.log(req.body.password, 73);
+			console.log(userFound.password, 79);
+			console.log(req.body.password, 80);
 			if (userFound.password === req.body.password) {
-				console.log('im hit', 75);
+				console.log('im hit', 82);
 				req.session.save(() => {
 					req.session.user = userFound;
 					res.json({
