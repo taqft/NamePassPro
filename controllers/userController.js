@@ -66,7 +66,9 @@ module.exports = {
 		try {
 			//	first find the user with the given email address
 			const userData = await User.findOne({
-				email: req.body.email
+				where: {
+					email: req.body.email
+				}
 			});
 			const userFound = userData.get({
 				plain: true
@@ -81,6 +83,7 @@ module.exports = {
 			if (userFound.password === req.body.password) {
 				console.log('im hit', 82);
 				req.session.save(() => {
+					req.session.loggedIn = true;
 					req.session.user = userFound;
 					res.json({
 						success: true
@@ -113,22 +116,22 @@ module.exports = {
 			req.session.save(() => {
 				req.session.loggedIn = true;
 				req.session.user = user;
-				res.redirect('/todos');
+				res.redirect('/saved');
 			});
 		} catch (e) {
 			res.json(e);
 		}
 	},
 
-	loginView: (req, res) => {
+	signinView: (req, res) => {
 		if (req.session.loggedIn) {
-			return res.redirect('/todos');
+			return res.redirect('/saved');
 		}
-		res.render('login');
+		res.render('signin');
 	},
 	signupView: (req, res) => {
 		if (req.session.loggedIn) {
-			return res.redirect('/todos');
+			return res.redirect('/saved');
 		}
 		res.render('signUp');
 	},

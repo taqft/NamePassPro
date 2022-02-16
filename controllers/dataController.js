@@ -55,7 +55,8 @@ module.exports = {
   },
   getAllData: async (req, res) => {
     if (!req.session.loggedIn) {
-      return res.redirect('/login');
+      console.log('user not logged in! redirecting...')
+      return res.redirect('/signin');
     }
     try {
       const userNamePassData = await Data.findAll({
