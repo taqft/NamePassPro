@@ -53,4 +53,24 @@ module.exports = {
       res.json(e);
     }
   },
+  getAllData: async (req, res) => {
+    if (!req.session.loggedIn) {
+      return res.redirect('/login');
+    }
+    try {
+      const userNamePassData = await Data.findAll({
+        where: {
+          userId: req.session.user.id,
+        }
+      });
+      res.render('saved', {
+        userData: userNamePassData.map(userData => userData.get({
+          plain: true
+        })),
+        user: req.session.user,
+      });
+    } catch (e) {
+      res.json(e);
+    }
+  },
 }

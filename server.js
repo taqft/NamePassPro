@@ -1,4 +1,3 @@
-// node server logic
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
@@ -18,14 +17,13 @@ const sessionSettings = {
     saveUninitialized: false,
 };
 
-//Tells node we're using handlebars for our template engine and configures it as the view engine
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session(sessionSettings));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session(sessionSettings));
 app.use(routes);
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Server listening on PORT ${PORT}`));
