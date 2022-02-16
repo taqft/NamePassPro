@@ -11,6 +11,6 @@ $(document).ready(function() {
 			password: passwordField.val(),
 		});
 
-		window.location.href = '/todos';
+		window.location.href = '/saved';
 	});
 });
