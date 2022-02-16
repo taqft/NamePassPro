@@ -38,7 +38,7 @@ module.exports = {
 	},
 	renderHomePage: async (req, res) => {
 		console.log('rendering homepage...')
-		res.render('signUp');
+		res.render('homepage');
 	},
 	getUserById: async (req, res) => {
 		req.session.save(() => {
