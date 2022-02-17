@@ -82,10 +82,7 @@ module.exports = {
 			//	check if the password from the form is the same password as the user found
 			//	with the given email
 			//	if that is true, save the user found in req.session.user
-			console.log(userFound.password, 79);
-			console.log(req.body.password, 80);
 			if (userFound.password === req.body.password) {
-				console.log('im hit', 82);
 				req.session.save(() => {
 					req.session.loggedIn = true;
 					req.session.user = userFound;
@@ -101,10 +98,13 @@ module.exports = {
 	},
 
 	signupHandler: async (req, res) => {
+		console.log('signupHandler hit');
+		console.log('request:', req.body);
 		const {
 			email,
 			username,
-			password
+			password,
+			master,
 		} = req.body;
 
 		try {
@@ -112,11 +112,12 @@ module.exports = {
 				email,
 				username,
 				password,
+				master,
 			});
 			const user = createdUser.get({
 				plain: true
 			});
-
+			console.log('created user:', user);
 			req.session.save(() => {
 				req.session.loggedIn = true;
 				req.session.user = user;
@@ -134,7 +135,6 @@ module.exports = {
 				layout: 'loggedIn'
 			});
 		}
-		console.log('user not logged in! redirecting...')
 		res.render('login');
 	},
 	signupView: (req, res) => {
