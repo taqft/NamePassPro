@@ -64,7 +64,6 @@ module.exports = {
           userId: req.session.user.id,
         }
       });
-      console.log(userNamePassData);
       res.render('saved', {
         layout: 'loggedIn',
         userData: userNamePassData.map(userData => userData.get({

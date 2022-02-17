@@ -3,11 +3,11 @@
   <p class="lead text-center">Your Saved credentials</p>
 </header>
 
-<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
+<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 mx-3">
   {{#each userData as |data| }}
   <div class="col mb-4">
-    <div class="card h-100 text-black mb-3">
-      <div class="card-header">{{data.username}}</div>
+    <div class="card h-100 text-black mb-3" style="background: linear-gradient(to top, rgba(43, 23, 32, 1), rgb(189, 100, 140));">
+      <div class="card-header font-weight-bold">{{data.username}}</div>
       <div class="card-body">
         <label>Password: (hover to show)</label>
         <textarea spellcheck="false" style="resize: none; overflow: auto; color: transparent; text-shadow: 0 0 8px rgba(0,0,0,0.5);"
