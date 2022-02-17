@@ -37,7 +37,11 @@ module.exports = {
 		}
 	},
 	renderHomePage: async (req, res) => {
-		console.log('rendering homepage...')
+		if (req.session.loggedIn) {
+			console.log('rendering logged in homepage...')
+			return res.render('homepage', {layout: 'loggedIn'});
+		}
+		console.log('rendering default homepage...')
 		res.render('homepage');
 	},
 	getUserById: async (req, res) => {
@@ -125,9 +129,13 @@ module.exports = {
 
 	signinView: (req, res) => {
 		if (req.session.loggedIn) {
-			return res.redirect('/saved');
+			console.log('rendering logged in saved page...')
+			return res.render('saved', {
+				layout: 'loggedIn'
+			});
 		}
-		res.render('signin');
+		console.log('user not logged in! redirecting...')
+		res.render('login');
 	},
 	signupView: (req, res) => {
 		if (req.session.loggedIn) {

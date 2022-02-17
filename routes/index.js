@@ -6,7 +6,7 @@ const { getAllData } = require('../controllers/dataController');
 
 router.get('/', renderHomePage);
 router.get('/saved', getAllData);
-router.get('/signin', signinView);
+router.get('/login', signinView);
 router.get('/signup', signupView);
 router.use('/api', apiRoutes);
 
