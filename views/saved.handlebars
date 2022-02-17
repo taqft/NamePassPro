@@ -1,3 +1,20 @@
-<h1>Welcome {{user.username}}</h1>
-<h2>Saved credentials</h2>
-<h2>Under Construction</h2>
+<header class="jumbotron">
+  <h1 class="display-2 text-center">Welcome {{user.username}}</h1>
+  <p class="lead text-center">Your Saved credentials</p>
+</header>
+
+<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
+  {{#each userData as |data| }}
+  <div class="col mb-4">
+    <div class="card h-100 text-black mb-3">
+      <div class="card-header">{{data.username}}</div>
+      <div class="card-body">
+        <label>Password: (hover to show)</label>
+        <textarea style="resize: none; overflow: auto; color: transparent; text-shadow: 0 0 8px rgba(0,0,0,0.5);"
+          class="col-10 mx-auto" rows="5" onMouseOver="this.style.textShadow='none';this.style.color='black'"
+   onMouseOut="this.style.textShadow='0 0 8px rgba(0,0,0,0.5)';this.style.color='transparent'">{{data.password}}</textarea>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>

@@ -7,8 +7,8 @@ module.exports = {
   // with association to the currently logged-in user
   // so that it can be retrieved later via getDataByUserId
   createData: async (req, res) => {
+    const userId = req.session.user.id;
     const {
-      userId,
       username,
       password
     } = req.body;
@@ -64,6 +64,7 @@ module.exports = {
           userId: req.session.user.id,
         }
       });
+      console.log(userNamePassData);
       res.render('saved', {
         layout: 'loggedIn',
         userData: userNamePassData.map(userData => userData.get({

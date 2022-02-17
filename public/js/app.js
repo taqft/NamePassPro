@@ -50,7 +50,7 @@ specialInput.attr('checked', true);
 const lowerChars = [97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122];
 const upperChars = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90];
 const numChars = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
-const specialChars = [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 58, 59, 60, 61, 62, 63, 64, 91, 92, 93, 94, 95, 96, 123, 124, 125, 126];
+const specialChars = [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 58, 59, 60, 61, 62, 63, 64, 91, 92, 93, 94, 95, 96, 123, 124, 125, 126];
 
 // global arrays, objects, variables
 let possibleChars = [];
@@ -248,14 +248,17 @@ function saveNamePass() {
 }
 
 // save button logic
-saveButton.on('click', () => {
-    let userName = $('textarea[name=Username]').val();
-    let password = $('textarea[name=Password]').val();
-    userPass = {
-        'user': userName,
-        'pass': password,
-    };
-    saveNamePass();
+saveButton.on('click', async function (event) {
+
+    let usernameField = $("#username");
+    let passwordField = $("#password");
+
+    event.preventDefault();
+    await $.post('/api/data', {
+        username: usernameField.val().trim(),
+        password: passwordField.val().trim(),
+    });
+    window.location.reload();
 });
 
 passGenerateButton.on('click', validatePassInput);
