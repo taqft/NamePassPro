@@ -39,7 +39,7 @@ module.exports = {
 	renderHomePage: async (req, res) => {
 		if (req.session.loggedIn) {
 			console.log('rendering logged in homepage...')
-			return res.render('homepage', {layout: 'loggedIn'});
+			return res.render('loggedInHomepage', {layout: 'loggedIn'});
 		}
 		console.log('rendering default homepage...')
 		res.render('homepage');
@@ -66,7 +66,6 @@ module.exports = {
 		}
 	},
 	login: async (req, res) => {
-		console.log(req.body);
 		try {
 			//	first find the user with the given email address
 			const userData = await User.findOne({
@@ -77,8 +76,6 @@ module.exports = {
 			const userFound = userData.get({
 				plain: true
 			});
-
-			console.log(userFound);
 			//	check if the password from the form is the same password as the user found
 			//	with the given email
 			//	if that is true, save the user found in req.session.user
