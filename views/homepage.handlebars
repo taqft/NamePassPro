@@ -31,9 +31,9 @@
                     <!-- Username Slider -->
                     <label class="form-label text-white" for="customRange1">Username Length:</label>
                     <br />
-                    <span class="text-white font-weight-bold" id="name-length-value">12</span>
+                    <span class="text-white font-weight-bold" id="name-length-value">10</span>
                     <div class="range">
-                      <input type="range" class="form-range" id="name-max" min="6" max="30" step="2" value="12" />
+                      <input type="range" class="form-range" id="name-max" min="6" max="30" step="2" value="10" />
                     </div>
                   </div>
                   <p>Choose your username's features:</p>
@@ -93,7 +93,7 @@
                     <br />
                     <span class="text-white font-weight-bold" id="pass-length-value">32</span>
                     <div class="range">
-                      <input type="range" class="form-range" id="passLength" min="8" max="128" />
+                      <input type="range" class="form-range" id="passLength" min="8" max="128" value="32" />
                     </div>
                   </div>
                   <!--Password Check Boxes -->
@@ -166,7 +166,7 @@
                   <strong>New Username</strong>
                 </h3>
                 <textarea readonly id="username" name="Username" placeholder=" Your New Username..."
-                  aria-label="Generated Username" style="height: 100px; font-size: 0.96em;"></textarea>
+                  aria-label="Generated Username" style="resize: none; height: 100px; font-size: 0.96em;"></textarea>
                 <div>
                     <a class="btn btn-black btn-rounded btn-md" id="user-generate" style="font-size: 1.05em;"><i
                     class="fas fa-chart-pie"></i>
@@ -200,7 +200,7 @@
                   <strong>New Password</strong>
                 </h3>
                 <textarea readonly id="password" name="Password" placeholder="Your Secure Password..."
-                  aria-label="Generated Password" style="height: 100px; font-size: 0.96em;"></textarea>
+                  aria-label="Generated Password" style="resize: none; height: 100px; font-size: 0.96em;"></textarea>
                 <div>
                     <a class="btn btn-black btn-rounded btn-md" id="pass-generate" style="font-size: 1.05em;"><i
                     class="fas fa-chart-pie"></i>

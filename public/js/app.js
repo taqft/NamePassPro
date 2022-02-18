@@ -63,17 +63,6 @@ let generateUserActive = true;
 let partOfSpeech = 'verb';
 let minimumWordFrequency = '1000';
 
-$('.input-field input').on('keyup', function () {
-    var self = $(this),
-        label = self.siblings('label');
-
-    if (self.val() != '') {
-        label.addClass('active');
-    } else {
-        label.removeClass('active');
-    }
-});
-
 // Set the input (checkbox) values so they remain mutally exclusive
 $('input:checkbox').change(
     function () {
