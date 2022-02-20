@@ -97,7 +97,7 @@ nameLengthSlider.on('input', () => {
     nameLengthEl.text(nameLengthSlider.val());
 });
 
-// monkey-proof generation options, reject if no option is chosen
+// do not allow password to be generated if no option is chosen
 const validatePassInput = () => {
     // I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
     // my input should be validated and at least one character type should be selected
