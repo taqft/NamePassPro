@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const {
   createUser,
-  getAllUsers,
+  // getAllUsers,
   getUserById,
   login,
   signupHandler,
@@ -10,7 +10,7 @@ const {
 } = require('../../../controllers/userController');
 
 router.route('/')
-  .get(getAllUsers) // remove after testing
+  // .get(getAllUsers) // remove after testing
   .post(createUser);
 
 router.post('/signup', signupHandler);
