@@ -20,6 +20,10 @@ Word.init({
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
+  length: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  }
 }, {
   sequelize,
   timestamps: false,

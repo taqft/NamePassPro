@@ -1,10 +1,10 @@
 // namepass generation logic
 $(document).ready(function () {
-  const logoutBtn = $('#logout');
-  logoutBtn.on('click', async function () {
-    await $.post('/api/users/logout');
-    window.location.href = '/';
-  });
+    const logoutBtn = $('#logout');
+    logoutBtn.on('click', async function () {
+        await $.post('/api/users/logout');
+        window.location.href = '/';
+    });
 });
 
 // TODO: port previous functions to work here as normal
@@ -38,6 +38,7 @@ const saveButton = $("#btn-save"); // id="btn-save"
 // default options are loaded for each:
 // username
 verbInput.attr('checked', true);
+nounInput.attr('checked', true);
 commonWordInput.attr('checked', true);
 
 // password
@@ -58,36 +59,6 @@ let userPass = {};
 let nums = [];
 let generatePassActive = true;
 let generateUserActive = true;
-
-// Initialize API parameters
-let partOfSpeech = 'verb';
-let minimumWordFrequency = '1000';
-
-// Set the input (checkbox) values so they remain mutally exclusive
-$('input:checkbox').change(
-    function () {
-
-        if ($(this).attr('id') === 'verbs' && nounInput.is(':checked')) {
-            nounInput.prop('checked', false);
-        } else if ($(this).attr('id') === 'nouns' && verbInput.is(':checked')) {
-            verbInput.prop('checked', false);
-        } else if ($(this).attr('id') === 'verbs' && !nounInput.is(':checked')) {
-            $(this).prop('checked', true);
-        } else if ($(this).attr('id') === 'nouns' && !verbInput.is(':checked')) {
-            $(this).prop('checked', true);
-        }
-
-        if ($(this).attr('id') === 'common' && uncommonWordInput.is(':checked')) {
-            uncommonWordInput.prop('checked', false);
-        } else if ($(this).attr('id') === 'uncommon' && commonWordInput.is(':checked')) {
-            commonWordInput.prop('checked', false);
-        } else if ($(this).attr('id') === 'common' && !uncommonWordInput.is(':checked')) {
-            $(this).prop('checked', true);
-        } else if ($(this).attr('id') === 'uncommon' && !commonWordInput.is(':checked')) {
-            $(this).prop('checked', true);
-        }
-
-    });
 
 passLengthSlider.on('input', () => {
     passLengthEl.text(passLengthSlider.val());
@@ -135,117 +106,39 @@ const generatePassword = () => {
     let passTextBox = $('#password');
     let newChar = '';
     let nextChar = '';
-
     passTextBox.html('Loading...');
     possibleChars = [];
-    nums = [];
 
     initPassSettings();
+    passTextBox.html('');
 
-    let queryURL = `https://www.random.org/decimal-fractions/?num=${passLength}&dec=20&col=1&format=plain&rnd=new`;
-
-    fetch(queryURL).then(response => {
-        response.text().then(data => ({
-            data: data,
-            status: response.status
-        })).then(res => {
-            if (res.status === 200) {
-                // console.log(`Status: ${res.status} OK`);
-                // console.log(res.data);
-
-                nums = res.data.split('\n');
-
-                // console.log(nums);
-                passTextBox.html('');
-
-                // a password is generated that matches the selected criteria
-                for (let i = 0; i < passLength; i++) {
-                    nextChar = Math.floor(nums[i] * (possibleChars.length - 1));
-                    newChar = String.fromCharCode(possibleChars[nextChar]);
-                    passTextBox.append(newChar);
-                }
-
-                generatePassActive = true;
-            } else if (res.status === 503) {
-                passTextBox.html(`An error occurred. Check console.`);
-                console.log(`An error occurred: Either the random.org service is unavailable or the free quota has been reached for the day.`);
-            } else {
-                passTextBox.html(`An error occurred. Check console.`);
-                console.log(`An error occurred: ${res.status}`);
-            }
-        })
-    })
-
-}
-
-// BONUS: add input box that corresponds with slider values
-// let maxWordLengthSlider = document.getElementById("word-length-slider"); // id="word-length-slider"
-// let maxWordLengthInput = document.getElementById("word-length-input"); // id="word-length-input"
-// maxWordLengthInput.value = maxWordLengthSlider.value;
-
-const initUsernameSettings = () => {
-    // check the options selected by the user to use for generating the username
-    // I can confirm whether to include verbs, nouns, and the dictionary frequency of words (wordnik option)
-    if (verbInput.is(':checked')) {
-        partOfSpeech = 'verb';
-    } else {
-        partOfSpeech = 'noun';
+    // a password is generated that matches the selected criteria
+    for (let i = 0; i < passLength; i++) {
+        nextChar = Math.floor(Math.random() * (possibleChars.length - 1));
+        newChar = String.fromCharCode(possibleChars[nextChar]);
+        passTextBox.append(newChar);
     }
 
-    if (commonWordInput.is(':checked')) {
-        minimumWordFrequency = '1000';
-    } else {
-        minimumWordFrequency = '100';
-    }
-}
+    generatePassActive = true;
+};
 
-const generateUsername = () => {
-
-    let nameLength = nameLengthSlider.val();
-    let wordLength = nameLength / 2;
+const generateUsername = async function () {
     let nameTextBox = $('#username');
-
-    nameTextBox.html('Loading...');
-
-    initUsernameSettings();
-
-    // array of objects of words, only retrieving limit = 2 words for now
-    queryURL = `https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=${partOfSpeech}&minCorpusCount=${minimumWordFrequency}&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=${wordLength}&maxLength=${wordLength}&limit=2&api_key=uno3kb56e0lo7ns6jrd19g1s1cvw2huvtluuyuv41zijilvfu`
-
-    fetch(queryURL).then(response =>
-        response.json().then(data => ({
-            data: data,
-            status: response.status
-        })).then(res => {
-            if (res.status === 200 && res.data.length === 2) {
-
-                // console.log(`Status: ${res.status} OK`);
-                // console.log(res.data);
-
-                let firstWord = res.data[0].word;
-                let secondWord = res.data[1].word;
-                let newUsername = firstWord + secondWord;
-
-                nameTextBox.html(newUsername);
-
-            } else if (res.data.length !== 2) {
-                nameTextBox.html(`An error occurred. Check console.`);
-                console.log(`An error occurred: The wordnik API did not return a second word for some reason.`);
-            } else {
-                nameTextBox.html(`An error occurred. Check console.`);
-                console.log(`An error occurred: ${res.status}`);
-            }
-        }));
-}
-
-// I have the option to save my username + password combo for later
-function saveNamePass() {
-
-    let namePass = JSON.parse(localStorage.getItem(`namePass`) || "[]");
-    namePass.push(userPass);
-    localStorage.setItem(`namePass`, JSON.stringify(namePass));
-
-}
+    let allowVerbs = 0;
+    let allowNouns = 0;
+    if (nounInput.is(':checked')) {
+        allowNouns = 1;
+    }
+    if (verbInput.is(':checked')) {
+        allowVerbs = 1;
+    }
+    let res = await $.get('/api/word/', {
+        length: nameLengthSlider.val(),
+        is_verb: allowVerbs,
+        is_noun: allowNouns,
+    });
+    nameTextBox.html(res);
+};
 
 // save button logic
 saveButton.on('click', async function (event) {
@@ -263,6 +156,7 @@ saveButton.on('click', async function (event) {
 
 passGenerateButton.on('click', validatePassInput);
 userGenerateButton.on('click', generateUsername);
+
 // I am able to press the button and generate both at the same time
 bothGenerateButton.on('click', () => {
     generateUsername();
@@ -276,7 +170,8 @@ userCopyButton.on('click', () => {
     $(copyText).select();
 
     navigator.clipboard.writeText(copyText.html());
-})
+});
+
 passCopyButton.on('click', () => {
     let copyText = $('#password');
 
@@ -284,4 +179,4 @@ passCopyButton.on('click', () => {
     $(copyText).select();
 
     navigator.clipboard.writeText(copyText.html());
-})
+});
