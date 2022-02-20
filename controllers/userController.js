@@ -1,3 +1,4 @@
+const argon2 = require('argon2');
 const {
 	User
 } = require('../models');
@@ -13,35 +14,39 @@ module.exports = {
 			const user = await User.create({
 				username,
 				email,
-				password,
-				master,
+				password: await argon2.hash(password, {
+					type: argon2.argon2id,
+				}),
+				master: await argon2.hash(master, {
+					type: argon2.argon2id,
+				}),
 			});
 			res.json(user);
 		} catch (e) {
 			res.json(e);
 		}
 	},
-	//	getting users
-	getAllUsers: async (req, res) => {
-		try {
-			const usersData = await User.findAll({});
+	// (TESTING) getting users
+	// getAllUsers: async (req, res) => {
+	// 	try {
+	// 		const usersData = await User.findAll({});
 
-			const users = usersData.map(user => user.get({
-				plain: true
-			}));
+	// 		const users = usersData.map(user => user.get({
+	// 			plain: true
+	// 		}));
 
-			console.log(users);
-			res.json(users);
-		} catch (e) {
-			res.json(e);
-		}
-	},
+	// 		console.log(users);
+	// 		res.json(users);
+	// 	} catch (e) {
+	// 		res.json(e);
+	// 	}
+	// },
 	renderHomePage: async (req, res) => {
 		if (req.session.loggedIn) {
 			console.log('rendering logged in homepage...')
 			return res.render('loggedInHomepage', {layout: 'loggedIn'});
 		}
-		console.log('rendering default homepage...')
+		console.log('rendering default homepage...');
 		res.render('homepage');
 	},
 	getUserById: async (req, res) => {
@@ -79,7 +84,7 @@ module.exports = {
 			//	check if the password from the form is the same password as the user found
 			//	with the given email
 			//	if that is true, save the user found in req.session.user
-			if (userFound.password === req.body.password) {
+			if ((await argon2.verify(userFound.password, req.body.password))) {
 				req.session.save(() => {
 					req.session.loggedIn = true;
 					req.session.user = userFound;
@@ -95,23 +100,25 @@ module.exports = {
 	},
 
 	signupHandler: async (req, res) => {
-		console.log('signupHandler hit');
-		console.log('request:', req.body);
 		const {
 			email,
 			username,
 			password,
 			master,
 		} = req.body;
-
+		console.log('signup req:', req.body)
 		try {
-			const createdUser = await User.create({
-				email,
+			const newUser = await User.create({
 				username,
-				password,
-				master,
+				email,
+				password: await argon2.hash(password, {
+					type: argon2.argon2id,
+				}),
+				master: await argon2.hash(password, {
+					type: argon2.argon2id,
+				}),
 			});
-			const user = createdUser.get({
+			const user = newUser.get({
 				plain: true
 			});
 			console.log('created user:', user);
@@ -148,8 +155,3 @@ module.exports = {
 		})
 	},
 }
-// /signup
-// Create a function in the controller that checks if a user is already logged in
-// if so, redirect them to /todos
-// if not, render the signup page
-// this should be rendered on /signup endpoint
