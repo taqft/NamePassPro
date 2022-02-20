@@ -113,7 +113,7 @@ npx sequelize-cli db:seed:all
 <!-- LICENSE -->
 ## License
 
-* This application is covered under the GNU 3.0 license.
+* This application is covered under the GPL-2.0 License.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -181,7 +181,6 @@ Don't forget to give the project a star if you liked it!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/theresaqueryforthat/NamePassPro.svg?style=for-the-badge
@@ -192,7 +191,7 @@ Don't forget to give the project a star if you liked it!
 [stars-url]: https://github.com/theresaqueryforthat/NamePassPro/stargazers
 [issues-shield]: https://img.shields.io/github/issues/theresaqueryforthat/NamePassPro.svg?style=for-the-badge
 [issues-url]: https://github.com/theresaqueryforthat/NamePassPro/issues
-[license-shield]: https://img.shields.io/github/license/theresaqueryforthat/NamePassPro.svg?style=for-the-badge&cacheSeconds=3600
-[license-url]: https://github.com/theresaqueryforthat/NamePassPro/blob/main/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/theresaqueryforthat/NamePassPro.svg?style=for-the-badge&cacheSeconds=60
+[license-url]: https://github.com/theresaqueryforthat/NamePassPro/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [portfolio-shield]: https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white
