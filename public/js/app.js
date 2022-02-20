@@ -68,6 +68,17 @@ nameLengthSlider.on('input', () => {
     nameLengthEl.text(nameLengthSlider.val());
 });
 
+const validateNameInput = () => {
+    // I confirm whether or not to include verbs and/or nouns in my name
+    // my input should be validated and at least one character type should be selected
+    if (verbInput.is(':checked') || nounInput.is(':checked')) {
+        generateUsername();
+    } else {
+        alert("Please select either Verbs, Nouns, or both.")
+        return;
+    }
+}
+
 // do not allow password to be generated if no option is chosen
 const validatePassInput = () => {
     // I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
@@ -75,7 +86,7 @@ const validatePassInput = () => {
     if (lowerInput.is(':checked') || upperInput.is(':checked') || numInput.is(':checked') || specialInput.is(':checked')) {
         generatePassword();
     } else {
-        alert("Please select an option.")
+        alert("Please select at least one password option.")
         return;
     }
 }
@@ -120,7 +131,7 @@ const generatePassword = () => {
     }
 
     generatePassActive = true;
-};
+}
 
 const generateUsername = async function () {
     let nameTextBox = $('#username');
@@ -155,11 +166,11 @@ saveButton.on('click', async function (event) {
 });
 
 passGenerateButton.on('click', validatePassInput);
-userGenerateButton.on('click', generateUsername);
+userGenerateButton.on('click', validateNameInput);
 
 // I am able to press the button and generate both at the same time
 bothGenerateButton.on('click', () => {
-    generateUsername();
+    validateNameInput();
     validatePassInput();
 });
 
