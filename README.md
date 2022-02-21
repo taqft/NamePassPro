@@ -84,8 +84,8 @@ DB_USER=root
 DB_PW=your_pw_here
 SESSION_SECRET=super_secret
 ```
-4. If you wish to see your local db with sample words, be sure you have sequelize-cli installed then run the following.
-Note that [sequelize-cli](https://www.npmjs.com/package/sequelize-cli) is only needed for development, so we save it as a dev dependency.
+4. If you wish to seed your local db with sample words, be sure you have sequelize-cli installed then run the following.
+-Note that [sequelize-cli](https://www.npmjs.com/package/sequelize-cli) is only needed for development, so we save it as a dev dependency.
 ```
 npm install --save-dev sequelize-cli
 npx sequelize-cli init
