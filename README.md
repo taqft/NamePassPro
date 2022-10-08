@@ -35,7 +35,7 @@
   <p align="center">
     Generate random usernames and passwords quickly and easily!
     <br />
-    <a href="https://theresaqueryforthat.github.io/NamePassPro/">View Demo</a>
+    <a href="https://namepass.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/theresaqueryforthat/NamePassPro/issues">Report Bug</a>
     ·
