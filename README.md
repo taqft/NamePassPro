@@ -6,7 +6,7 @@
 *** to allow for easy automation of the README generation process.
 *** Check it out: https://github.com/othneildrew/Best-README-Template/
 *** For more information about this README template version
-*** see the following repo: https://github.com/theresaqueryforthat/auto-readme
+*** see the following repo: https://github.com/taqft/auto-readme
 -->
 
 <!-- PROJECT SHIELDS -->
@@ -26,7 +26,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/theresaqueryforthat/NamePassPro">
+  <a href="https://github.com/taqft/NamePassPro">
     <img src="assets/images/logo.png" alt="Logo" />
   </a>
 
@@ -37,9 +37,9 @@
     <br />
     <a href="https://namepass.herokuapp.com/">View Demo</a>
     ·
-    <a href="https://github.com/theresaqueryforthat/NamePassPro/issues">Report Bug</a>
+    <a href="https://github.com/taqft/NamePassPro/issues">Report Bug</a>
     ·
-    <a href="https://github.com/theresaqueryforthat/NamePassPro/issues">Request Feature</a>
+    <a href="https://github.com/taqft/NamePassPro/issues">Request Feature</a>
   </p>
 </div>
 
@@ -62,7 +62,7 @@
 
 * Built with NodeJS and Handlebars, this simple app allows you to generate usernames and passwords based on your desired criteria. We worked on this to save time when spinning up new test accounts, and to serve as a base for future improvements and features to make our lives easier.
 
-* This README file was generated with [auto-readme](https://github.com/theresaqueryforthat/auto-readme/)! Go check it out if you're interested in learning more!
+* This README file was generated with [auto-readme](https://github.com/taqft/auto-readme/)! Go check it out if you're interested in learning more!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -71,7 +71,7 @@
 
 1. Clone the repo with your preferred method
 ```sh
-git clone git@github.com:theresaqueryforthat/NamePassPro.git
+git clone git@github.com:taqft/NamePassPro.git
 ```
 2. Install NPM packages
 ```sh
@@ -162,7 +162,7 @@ Don't forget to give the project a star if you liked it!
 
 * Ben Koenig
 
-[![portfolio][portfolio-shield]](https://theresaqueryforthat.github.io/code_portfolio/)
+[![portfolio][portfolio-shield]](https://taqft.github.io/code_portfolio/)
 [![linkedin][linkedin-shield]](https://www.linkedin.com/in/bk09/)
 
 * Stephen Garcia
@@ -184,15 +184,15 @@ Don't forget to give the project a star if you liked it!
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/theresaqueryforthat/NamePassPro.svg?style=for-the-badge
-[contributors-url]: https://github.com/theresaqueryforthat/NamePassPro/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/theresaqueryforthat/NamePassPro.svg?style=for-the-badge
-[forks-url]: https://github.com/theresaqueryforthat/NamePassPro/network/members
-[stars-shield]: https://img.shields.io/github/stars/theresaqueryforthat/NamePassPro.svg?style=for-the-badge
-[stars-url]: https://github.com/theresaqueryforthat/NamePassPro/stargazers
-[issues-shield]: https://img.shields.io/github/issues/theresaqueryforthat/NamePassPro.svg?style=for-the-badge
-[issues-url]: https://github.com/theresaqueryforthat/NamePassPro/issues
-[license-shield]: https://img.shields.io/github/license/theresaqueryforthat/NamePassPro.svg?style=for-the-badge&cacheSeconds=60
-[license-url]: https://github.com/theresaqueryforthat/NamePassPro/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/taqft/NamePassPro.svg?style=for-the-badge
+[contributors-url]: https://github.com/taqft/NamePassPro/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/taqft/NamePassPro.svg?style=for-the-badge
+[forks-url]: https://github.com/taqft/NamePassPro/network/members
+[stars-shield]: https://img.shields.io/github/stars/taqft/NamePassPro.svg?style=for-the-badge
+[stars-url]: https://github.com/taqft/NamePassPro/stargazers
+[issues-shield]: https://img.shields.io/github/issues/taqft/NamePassPro.svg?style=for-the-badge
+[issues-url]: https://github.com/taqft/NamePassPro/issues
+[license-shield]: https://img.shields.io/github/license/taqft/NamePassPro.svg?style=for-the-badge&cacheSeconds=60
+[license-url]: https://github.com/taqft/NamePassPro/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [portfolio-shield]: https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white
