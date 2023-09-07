@@ -20,14 +20,14 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/theresaqueryforthat/NamePassPro.git"
+    "url": "git+https://github.com/taqft/NamePassPro.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/theresaqueryforthat/NamePassPro/issues"
+    "url": "https://github.com/taqft/NamePassPro/issues"
   },
-  "homepage": "https://github.com/theresaqueryforthat/NamePassPro#readme",
+  "homepage": "https://github.com/taqft/NamePassPro#readme",
   "description": ""
 }
