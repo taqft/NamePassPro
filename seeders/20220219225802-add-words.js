@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Word', [{
+    await queryInterface.bulkInsert('word', [{
         word: "be",
         is_verb: 1,
         is_noun: 0,
