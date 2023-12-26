@@ -4,10 +4,10 @@ const Sequelize = require('sequelize');
 
 let sequelize;
 
-//this will only run in production.
+// this will only run in production.
 // this environmental variable only exists in production
-if (process.env.JAWSDB_URL) {
-	sequelize = new Sequelize(process.env.JAWSDB_URL);
+if (process.env.MYSQL_URL) {
+	sequelize = new Sequelize(process.env.MYSQL_URL);
 } else {
 	sequelize = new Sequelize(
 		process.env.DB_NAME,
